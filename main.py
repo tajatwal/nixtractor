@@ -18,8 +18,8 @@ class NuixExportZipper(object):
         self.subdir_target = subdir_target
         self.output_dir = output_dir
 
-    def find_candidates(self):
-        """Find all directories that contain an "Items" subdirectory."""
+    def get_subdir_candidates(self):
+        """Find all subdirectories that contain an "Items" subdirectory."""
         candidates = list()
         # Get a list of top-level subdirectories in the provided file.
         for parent_directory in next(walk(self.origin_path))[1]:
