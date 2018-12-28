@@ -53,4 +53,5 @@ class NuixExportZipper(object):
 
 
 if __name__ == '__main__':
-    export_items()
+    exporter = NuixExportZipper()
+    exporter.convert_to_zips()
