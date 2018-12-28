@@ -32,13 +32,16 @@ class NuixExportZipper(object):
     def zip_directories(self, directories: list):
         """Individually zip each directory's "Items" folder."""
         for parent_directory in directories:
+            zip_name = parent_directory + '.zip'
+            new_zip = ZipFile(zip_name, 'w')
+            # Zip all files from the "Items" subdirectory.
             for directory, subdirectories, files in walk(path.join(self.origin_path,
                                                                    parent_directory,
                                                                    self.subdir_target)):
-                new_zip = ZipFile(parent_directory + '.zip', 'w')
                 for file in files:
-                    new_zip.write(path.join(directory, file))
-                new_zip.close()
+                    print(f'Adding "{file}" to "{zip_name}."')
+                    new_zip.write(filename=path.join(directory, file), arcname=file)
+            new_zip.close()
 
     def convert_to_zips(self):
         """Find all KWS folders and zip each one."""
