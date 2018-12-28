@@ -28,28 +28,20 @@ class NuixExportZipper(object):
                 candidates.append(parent_directory)
         return candidates
 
-    def zip_directories(directories: list):
-        """Zip the each directory individually."""
-        zip_file_path = path.join(parent_directory + '.zip')
-        target_directory = path.join(origin_path, parent_directory, subdir_target)
-        print(f'Target directory: {target_directory}')
-        # if not path.exists(zip_file_path):
-        #     makedirs(zip_file_path)
-        export_items(origin_path=target_directory,
-                     # Name the output file after the subdirectory's parent directory.
-                     out_file_handle=ZipFile(outfile)),
-        # elif out_file_handle:
-        #     with open(zip_file_path, 'w') as outfile:
-        #         for directory_name, subdirectories, files in walk(origin_path):
-        #             for file in files:
-        #                 outfile.write(path.join(directory_name, file))
-            # Ensure that there's a directory to put the zipped files into.
-            # if not path.exists(output_dir):
-            #     makedirs(output_dir)
+    def zip_directories(self, directories: list):
+        """Individually zip each directory's "Items" folder."""
+        for parent_directory in directories:
+            for item_directory, item_subdirectories, item_files in walk(path.join(self.origin_path,
+                                                                                  parent_directory,
+                                                                                  self.subdir_target)):
+                new_zip = ZipFile(parent_directory + '.zip', 'w')
+                for file in item_files:
+                    new_zip.write(path.join(item_directory, file))
+                new_zip.close()
 
     def convert_to_zips(self):
         """Find all KWS folders and zip each one."""
-        print(self.get_subdir_candidates())
+        self.zip_directories(self.get_subdir_candidates())
 
 
 if __name__ == '__main__':
