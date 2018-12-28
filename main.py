@@ -13,7 +13,7 @@ class NuixExportZipper(object):
         output_dir (str, optional): Path to the directory where the zipped files should be stored.
         - Defaults to "output."
     """
-    def __init__(self, origin_path='.', subdir_target: str='Items', output_dir: str='output'):
+    def __init__(self, origin_path='.', subdir_target: str = 'Items', output_dir: str = 'output'):
         self.origin_path = getcwd() if origin_path == '.' else origin_path
         self.subdir_target = subdir_target
         self.output_dir = output_dir
