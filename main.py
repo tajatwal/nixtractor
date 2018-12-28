@@ -30,17 +30,14 @@ class NuixExportZipper(object):
 
     def zip_directories(directories: list):
         """Zip the each directory individually."""
-
-
-
-                zip_file_path = path.join(parent_directory + '.zip')
-                target_directory = path.join(origin_path, parent_directory, subdir_target)
-                print(f'Target directory: {target_directory}')
-                # if not path.exists(zip_file_path):
-                #     makedirs(zip_file_path)
-                export_items(origin_path=target_directory,
-                             # Name the output file after the subdirectory's parent directory.
-                             out_file_handle=ZipFile(outfile)),
+        zip_file_path = path.join(parent_directory + '.zip')
+        target_directory = path.join(origin_path, parent_directory, subdir_target)
+        print(f'Target directory: {target_directory}')
+        # if not path.exists(zip_file_path):
+        #     makedirs(zip_file_path)
+        export_items(origin_path=target_directory,
+                     # Name the output file after the subdirectory's parent directory.
+                     out_file_handle=ZipFile(outfile)),
         # elif out_file_handle:
         #     with open(zip_file_path, 'w') as outfile:
         #         for directory_name, subdirectories, files in walk(origin_path):
