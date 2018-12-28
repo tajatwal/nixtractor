@@ -47,6 +47,10 @@ class NuixExportZipper(object):
             # if not path.exists(output_dir):
             #     makedirs(output_dir)
 
+    def convert_to_zips(self):
+        """Find all KWS folders and zip each one."""
+        print(self.get_subdir_candidates())
+
 
 if __name__ == '__main__':
     export_items()
