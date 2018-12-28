@@ -26,7 +26,7 @@ class NuixExportZipper(object):
             # Return the parent directory's name if it has an "Items" folder.
             if self.subdir_target in next(walk(path.join(self.origin_path, parent_directory)))[1]:
                 candidates.append(parent_directory)
-        print(f'Found {len(candidates)} subdirectory candidates.')
+        print(f'Found {len(candidates)} subdirectory candidate(s): {", ".join(directory for directory in candidates)}.')
         return candidates
 
     def zip_directories(self, directories: list):
